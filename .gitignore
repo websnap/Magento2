@@ -10,7 +10,6 @@ atlassian*
 /.idea
 /.gitattributes
 /app/config_sandbox
-/app/etc/config.php
 /app/etc/env.php
 /app/code/Magento/TestModule*
 /lib/internal/flex/uploader/.actionScriptProperties
@@ -42,13 +41,31 @@ atlassian*
 /pub/media/tmp/*
 !/pub/media/tmp/.htaccess
 /pub/media/captcha/*
+/pub/media/magestore/*
+/pub/media/amasty/*
+/pub/media/storepickup/*
+/pub/media/attribute/*
+/pub/media/sitemap/*
+/pub/media/tagmanager/*
 /pub/static/*
 !/pub/static/.htaccess
+!/pub/robots.txt
+!/pub/siteindex.xml
+!/pub/media/freddelabretoniere*
+!/pub/media/shabbiesamsterdam*
+
+/dev/tools/Magento
+/dev/tools/grunt
+/dev/travis
+/dev/tests
+/dev/tools/*.*
+!/dev/tools/.htacces
 
 /var/*
 !/var/.htaccess
 /vendor/*
 !/vendor/.htaccess
+/logs
 
 !/.gitignore
 !/app/etc/config.php

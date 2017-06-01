@@ -1,0 +1,60 @@
+<?php
+/** @var $block ISM\ProductColor\Block\Product\Configurable\Color */
+$product = $block->getProduct();
+$relatedProducts = $block->getRelatedProducts($product);
+if (empty($relatedProducts)) return;
+$sku = $product->getSku();
+?>
+<div class="product-options-wrapper product-options-wrapper-color">
+    <div class="swatch-opt">
+        <div class="ism-color-block swatch-attribute" data-product-sku="<?= $this->escapeHtml($sku) ?>">
+            <span class="color-label swatch-attribute-label"><?= __('Color:') ?></span>
+            <span class="current-color swatch-attribute-selected-option"></span>
+            <div class="color-samples swatch-attribute-options clearfix">
+                <?php foreach ($relatedProducts as $relatedProduct) { ?>
+                    <?php $productUrl = $relatedProduct->getProductUrl(); ?>
+                    <?php $swatch = $relatedProduct->getSwatch(); ?>
+                    <?php if (!$productUrl || !$swatch) continue ?>
+
+                    <a class="color-sample" href="<?= $productUrl ?>">
+                        <?php if (isset($swatch['type'])) { ?>
+                            <?php switch ($swatch['type']) {
+                                case '3':
+                                    ?>
+                                    <div class="swatch-option"></div>
+                                    <?php break;
+                                case '2':
+                                    ?>
+                                    <?php $swatchThumbPath = $block->getSwatchPath('swatch_thumb', $swatch['value']); ?>
+                                    <?php $swatchImagePath = $block->getSwatchPath('swatch_image', $swatch['value']); ?>
+                                    <div
+                                        class="<?php echo $relatedProduct->getSku() == $product->getSku() ? 'selected' : '' ?> swatch-option image"
+                                        option-tooltip-thumb="<?php /* @escapeNotVerified */
+                                        echo $swatchThumbPath ?>"
+                                        style="background: url(<?php /* @escapeNotVerified */
+                                        echo $swatchImagePath ?>) no-repeat center; background-size: initial;"></div>
+                                    <?php break;
+                                case '1':
+                                    ?>
+                                    <div
+                                        class="<?php echo $relatedProduct->getSku() == $product->getSku() ? 'selected' : '' ?> swatch-option color"
+                                        style="background: <?php echo $swatch['value'] ?> no-repeat center; background-size: initial;"></div>
+                                    <?php break;
+                                case '0':
+                                default:
+                                    ?>
+                                    <div
+                                        class="<?php echo $relatedProduct->getSku() == $product->getSku() ? 'selected' : '' ?> swatch-option text">
+                                        <?php echo $swatch['value'] ?>
+                                    </div>
+                                    <?php break;
+                            } ?>
+                        <?php } ?>
+                    </a>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
