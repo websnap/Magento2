@@ -110,10 +110,6 @@ DirectoryIndex index.php
         order allow,deny
         deny from all
     </Files>
-    <Files auth.json>
-        order allow,deny
-        deny from all
-    </Files>
 ErrorDocument 404 /pub/errors/404.php
 ErrorDocument 403 /pub/errors/404.php
 <IfModule mod_headers.c>
